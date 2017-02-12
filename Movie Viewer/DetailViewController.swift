@@ -25,11 +25,12 @@ class DetailViewController: UIViewController {
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         let title = movie["title"] as? String
         titleLabel.text = title
+        self.navigationItem.title = title
         
         let overView = movie["overview"]
         overviewLabel.text = overView as? String
         overviewLabel.sizeToFit()
-        //let baseUrl = "https://image.tmdb.org/t/p/w500"
+//let baseUrl = "https://image.tmdb.org/t/p/w500"
         
         
         

@@ -10,17 +10,24 @@ import UIKit
 import MBProgressHUD
 import AFNetworking
 
-class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var movies: [NSDictionary]?
     var endPoint: String!
+    
+    
+    var filteredData: [NSDictionary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+                
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
@@ -39,6 +46,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                     print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.filteredData = self.movies
                     self.tableView.reloadData()
                 }
             }
@@ -89,7 +97,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         
         
-        print ("row \(indexPath.row)")
+        
         return cell
     }
     
@@ -101,6 +109,26 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Tell the refreshControl to stop spinning
         refreshControl.endRefreshing()
+    }
+    
+    // This method updates filteredData based on the text in the Search Box
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            filteredData = searchText.isEmpty ? movies : movies?.filter({(dataString: NSDictionary) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            let title = dataString["title"] as! String
+            return title.range(of: searchText, options: .caseInsensitive) != nil
+        })
+        
+        tableView.reloadData()
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
     }
     
     
