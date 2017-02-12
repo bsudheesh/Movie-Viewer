@@ -82,6 +82,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        let voteAverage = movie["vote_average"] as! Double
         
         let posterPath = movie["poster_path"] as! String
         
@@ -91,6 +92,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        cell.voteAverage.text = String(voteAverage) 
         cell.posterView.setImageWith(imageUrl as! URL)
         
         

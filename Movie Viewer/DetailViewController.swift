@@ -16,8 +16,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    @IBOutlet weak var voteAverageLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var infoView: UIView!
     
+    @IBOutlet weak var popularityLabel: UILabel!
     var movie: NSDictionary = [:]
     
     override func viewDidLoad() {
@@ -27,10 +30,23 @@ class DetailViewController: UIViewController {
         titleLabel.text = title
         self.navigationItem.title = title
         
+        
+        
         let overView = movie["overview"]
         overviewLabel.text = overView as? String
         overviewLabel.sizeToFit()
 //let baseUrl = "https://image.tmdb.org/t/p/w500"
+        
+        let voteAverage = movie["vote_average"] as! Double
+        voteAverageLabel.text = "Average Vote: " + String(voteAverage)
+        
+        let releaseDate = movie["release_date"] as? String
+        let releaseDataTitle = "Release Data: " + releaseDate!
+        releaseDateLabel.text = releaseDataTitle
+        
+        let popularity = movie["popularity"] as! Double
+        popularityLabel.text = "Popularity : " + String(format: "%.2f", popularity)
+        
         
         
         

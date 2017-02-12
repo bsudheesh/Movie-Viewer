@@ -46,10 +46,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ROr-Qy-adu">
-                                                    <rect key="frame" x="121" y="31" width="221" height="94"/>
+                                                    <rect key="frame" x="121" y="54" width="221" height="94"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.90312063694000244" green="0.91399616003036499" blue="0.3039659857749939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Vote Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WzA-jT-2I4">
+                                                    <rect key="frame" x="121" y="32" width="221" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.99970155954360962" blue="0.051196612417697906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -60,6 +67,7 @@
                                             <outlet property="overviewLabel" destination="ROr-Qy-adu" id="m1g-va-j1b"/>
                                             <outlet property="posterView" destination="att-h9-hsh" id="fwb-5A-DuV"/>
                                             <outlet property="titleLabel" destination="H0Y-2p-43M" id="tZs-gf-dfB"/>
+                                            <outlet property="voteAverage" destination="WzA-jT-2I4" id="1eT-Bq-HKY"/>
                                             <segue destination="Ev1-Ua-Uub" kind="push" id="ZQQ-sq-qGt"/>
                                         </connections>
                                     </tableViewCell>
@@ -95,7 +103,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="g81-qB-Snq">
-                                        <rect key="frame" x="0.0" y="602" width="375" height="350"/>
+                                        <rect key="frame" x="0.0" y="602" width="375" height="379"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GkD-bB-4Ec">
@@ -105,8 +113,29 @@
                                                 <color key="textColor" red="0.9976925253868103" green="0.22458067536354065" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Relase Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ck-sh-8G0">
+                                                <rect key="frame" x="29" y="59" width="338" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.9482918381690979" green="0.95281916856765747" blue="0.98302179574966431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Vote Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jwS-9f-gEF">
+                                                <rect key="frame" x="29" y="88" width="338" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.93490797281265259" green="0.94921749830245972" blue="0.9792446494102478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Popularity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QoW-VX-PQL">
+                                                <rect key="frame" x="29" y="117" width="338" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.91088801622390747" green="0.9049801230430603" blue="0.97439056634902954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVD-ov-vyb">
-                                                <rect key="frame" x="29" y="62" width="338" height="37"/>
+                                                <rect key="frame" x="29" y="153" width="338" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.53081661462783813" green="0.506492018699646" blue="0.91287237405776978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,9 +153,12 @@
                     <connections>
                         <outlet property="infoView" destination="g81-qB-Snq" id="OkZ-nW-dWG"/>
                         <outlet property="overviewLabel" destination="wVD-ov-vyb" id="hgV-25-p4L"/>
+                        <outlet property="popularityLabel" destination="QoW-VX-PQL" id="XBE-fe-wdM"/>
                         <outlet property="posterImageView" destination="JY1-dH-ySZ" id="Fba-VL-BHV"/>
+                        <outlet property="releaseDateLabel" destination="7Ck-sh-8G0" id="b1p-Gt-7F4"/>
                         <outlet property="scrollView" destination="44Z-3y-xYV" id="FmX-GZ-NUj"/>
                         <outlet property="titleLabel" destination="GkD-bB-4Ec" id="F7u-s8-n2C"/>
+                        <outlet property="voteAverageLabel" destination="jwS-9f-gEF" id="AzO-He-SHs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFa-P5-RXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
