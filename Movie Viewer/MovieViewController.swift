@@ -24,7 +24,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         
-                
+        
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
@@ -62,8 +62,8 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if let movies = movies{
-            return movies.count
+        if let filteredData = filteredData{
+            return filteredData.count
 
         }
         else{
@@ -79,7 +79,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath as IndexPath) as! MovieCell
         
         
-        let movie = movies![indexPath.row]
+        let movie = filteredData![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         let voteAverage = movie["vote_average"] as! Double
@@ -94,6 +94,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.overviewLabel.text = overview
         cell.voteAverage.text = String(voteAverage) 
         cell.posterView.setImageWith(imageUrl as! URL)
+        cell.selectionStyle = .none
         
         
         
@@ -109,6 +110,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         self.tableView.reloadData()
         
+        
         // Tell the refreshControl to stop spinning
         refreshControl.endRefreshing()
     }
@@ -117,22 +119,31 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             filteredData = searchText.isEmpty ? movies : movies?.filter({(dataString: NSDictionary) -> Bool in
             // If dataItem matches the searchText, return true to include it
-            let title = dataString["title"] as! String
-            return title.range(of: searchText, options: .caseInsensitive) != nil
+            let title = dataString["title"] as? String
+            return title?.range(of: searchText, options: .caseInsensitive) != nil
         })
         
         tableView.reloadData()
     }
+    
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
+        self.tableView.reloadData()
     }
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        
+        // Reload data after user presses cancel in the search bar
+        self.filteredData = self.movies
+        tableView.reloadData()
+
     }
-    
+ 
     
     
     // MARK: - Navigation
@@ -141,7 +152,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
-        let movie = movies![indexPath!.row]
+        let movie = filteredData![indexPath!.row]
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
