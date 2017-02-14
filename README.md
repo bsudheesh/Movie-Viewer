@@ -80,15 +80,15 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [✔] List anything else that you can get done to improve the app functionality!
     - The Movies have a rating that is available with the title and the overview.
     - In the detail page, the release date, vote rating and popularity is displayed.
     - Implemented search.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. How to implement more options with the JSON data that we get.
+2. Making the app more User Friendly for a better User Experience.
 
 ## Video Walkthrough 
 
